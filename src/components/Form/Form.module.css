@@ -1,0 +1,20 @@
+.form {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  max-width: 600px;
+  padding: 25px;
+  text-align: center;
+}
+
+.inputIn {
+  display: inline-flex;
+  text-align: center;
+}
+
+.btnAdd {
+  background-color: green;
+}
+.btnAdd:hover {
+  transform: scale(1.3);
+}
