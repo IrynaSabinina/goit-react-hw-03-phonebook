@@ -28,9 +28,11 @@ export class App extends Component {
       name.toUpperCase().includes(filter.toUpperCase())
     );
   };
+
   componentDidMount() {
     this.setState({ contacts: JSON.parse(localStorage.getItem('contacts')) });
   }
+  /////////////////
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.contacts !== prevState.contacts) {
