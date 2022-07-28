@@ -2,20 +2,15 @@ import React, { Component } from 'react';
 import { Form } from './Form/Form';
 import { ContactsList } from './Contacts/ContactsList';
 import { FindElement } from './FindElement/FindElement';
+// import { toBeInTheDocument } from '@testing-library/jest-dom/dist/matchers';
 
 export class App extends Component {
   state = {
-    contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    ],
+    contacts: [],
     filter: '',
   };
 
   onSubmitHandlerAddContacts = data => {
-    console.log(data);
     this.state.contacts.find(contact => contact.name === data.name)
       ? alert('This contacts allrady in')
       : this.setState(prevState => ({
@@ -33,6 +28,16 @@ export class App extends Component {
       name.toUpperCase().includes(filter.toUpperCase())
     );
   };
+  componentDidMount() {
+    this.setState({ contacts: JSON.parse(localStorage.getItem('contacts')) });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+      console.log('hello');
+    }
+  }
 
   contactDelete = key => {
     this.setState(prev => ({
