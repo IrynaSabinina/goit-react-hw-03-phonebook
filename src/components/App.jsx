@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Form } from './Form/Form';
 import { ContactsList } from './Contacts/ContactsList';
 import { FindElement } from './FindElement/FindElement';
-// import { toBeInTheDocument } from '@testing-library/jest-dom/dist/matchers';
+
 
 export class App extends Component {
   state = {
@@ -28,11 +28,12 @@ export class App extends Component {
       name.toUpperCase().includes(filter.toUpperCase())
     );
   };
-
+  
   componentDidMount() {
-    this.setState({ contacts: JSON.parse(localStorage.getItem('contacts')) });
+    if (localStorage.getItem('contacts')) {
+      this.setState({ contacts: JSON.parse(localStorage.getItem('contacts')) });
+    }
   }
-  /////////////////
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.contacts !== prevState.contacts) {
